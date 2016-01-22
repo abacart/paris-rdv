@@ -1,0 +1,11 @@
+<h1>Administration</h1>
+<%= link_to "Create product", new_product_path %>
+<table>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to product.name, edit_product_path(product) %></td>
+      <td><%= product.price %></td>
+      <td><%= link_to 'Delete', product, method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

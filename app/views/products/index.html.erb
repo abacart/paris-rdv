@@ -1,0 +1,9 @@
+<h1>Products</h1>
+<table>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to product.name, product %></td>
+      <td><%= product.price %></td>
+    </tr>
+  <% end %>
+</table>
