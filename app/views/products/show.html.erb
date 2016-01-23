@@ -1,6 +1,5 @@
-<%= link_to 'Product list', products_path %>
-
 <h1><%= @product.name %></h1>
 <p><%= @product.description %></p>
 <strong><%= @product.price %></strong>
+<%= link_to 'Add to cart', add_cart_index_path(@product), method: :post %>
 

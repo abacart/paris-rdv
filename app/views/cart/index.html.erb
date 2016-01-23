@@ -1,0 +1,15 @@
+<h1>Cart</h1>
+<table>
+  <% @user_products.each do |up| %>
+    <tr>
+      <td><%= up.quantity %></td>
+      <td><%= link_to up.name, up.product %></td>
+      <td><%= number_to_currency up.price %></td>
+      <td><%= link_to 'Remove', remove_cart_index_path(up.product), method: :delete %></td>
+    </tr>
+  <% end %>
+    <tr>
+      <td colspan='2'>Total</td>
+      <td><%= number_to_currency current_user.total_cart %></td>
+    </tr>
+</table>
