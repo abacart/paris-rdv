@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_action :set_product, only: [:add_product, :remove_product]
-
+  before_action :authenticate_user!
 
   def add_product
     current_user.add_to_cart @product

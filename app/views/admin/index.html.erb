@@ -1,7 +1,7 @@
 <h1>Administration</h1>
-<%= link_to "Product list", products_path %>
-<%= link_to "Create product", new_product_path %>
-<table>
+<p><%= link_to "Product list", products_path, class: btn(:default) %></p>
+<p><%= link_to "Create product", new_product_path, class: btn(:primary) %></p>
+<table class="table">
   <% @products.each do |product| %>
     <tr>
       <td><%= link_to product.name, edit_product_path(product) %></td>

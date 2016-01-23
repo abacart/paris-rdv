@@ -7,15 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Admin", admin_index_path  %>
-<%= link_to "Shop", products_path  %>
-<%= link_to "Cart", cart_index_path  %>
-<h1>Paris Rendez-vous</h1>
-
-<%= notice %>
-<%= alert %>
-
-<%= yield %>
-
+  <%= render 'layouts/navbar' %>
+  <%= notice %>
+  <%= alert %>
+  <div class="container">
+    <%= yield %>
+  </div>
 </body>
 </html>

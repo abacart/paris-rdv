@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :products
   resources :admin, only: [:index]
   resources :cart, only: [:index] do
