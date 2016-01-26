@@ -1,0 +1,4 @@
+<h1><%= @box.name %></h1>
+<p><%= @box.description %></p>
+<strong><%= @box.price %></strong>
+<%= link_to 'Add to cart', add_box_cart_index_path(@box), method: :post %>

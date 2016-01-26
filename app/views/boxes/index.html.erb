@@ -1,0 +1,8 @@
+<h1>Packages</h1>
+<table class="table">
+  <% @boxes.each do |box| %>
+    <tr>
+      <td><%= link_to box.name, box %></td>
+      <td><%= box.price %></td>
+    </tr>
+  <% end %>

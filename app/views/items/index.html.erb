@@ -1,0 +1,27 @@
+<table class="table">
+<caption>Products</caption>
+    <tr>
+      <th>Products</th>
+      <th>Prices</th>
+    </tr>
+  <% @products.unboxable.each do |product| %>
+    <tr>
+      <td><%= link_to product.name, product %></td>
+      <td><%= product.price %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="table">
+<caption>Create your box</caption>
+    <tr>
+      <th>Boxes</th>
+      <th>Prices</th>
+    </tr>
+  <% @boxes.each do |box| %>
+    <tr>
+      <td><%= link_to box.name, box %></td>
+      <td><%= box.price %></td>
+    </tr>
+  <% end %>
+</table>
