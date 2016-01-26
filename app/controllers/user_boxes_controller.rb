@@ -8,9 +8,7 @@ class UserBoxesController < ApplicationController
   def add_product
     @user_box = UserBox.find params[:user_box_id]
     @product = Product.find params[:product_id]
-    if @user_box.full?
-      render js: "alert('Box is full')"
-    else
+    unless @user_box.full?
       UserBoxProduct.create(user_box: @user_box, product: @product)
     end
   end

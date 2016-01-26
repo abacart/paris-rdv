@@ -5,3 +5,7 @@
     </li>
   <% end %>
 </ul>
+
+<% if @user_box.full? %>
+  <p class='text-danger'>The box is full.</p>
+<% end %>
