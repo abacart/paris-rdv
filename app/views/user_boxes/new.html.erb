@@ -1,0 +1,22 @@
+<h1>Create a box</h1>
+<h2><%= @box.name %></h2>
+<div class="row">
+  <div class="col-xs-8">
+    <table class="table">
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= image_tag product.picture(:thumb)%></td>
+          <td><%= link_to product.name, product %></td>
+          <td><%= link_to "Add to box", user_box_add_product_path(@user_box, product), remote: true, method: :post %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-xs-4">
+    <div id="product-list">
+        <%= render 'user_boxes/list' %>
+    </div>
+  </div>
+
+</div>

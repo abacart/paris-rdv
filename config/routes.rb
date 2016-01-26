@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :product_boxes, only: [:destroy] do
+  resources :user_boxes, only: [:edit, :destroy] do
+    post 'add_product/:product_id', to: 'user_boxes#add_product', as: 'add_product'
+    delete 'remove_product/:product_id', to: 'user_boxes#remove_product', as: 'remove_product'
     collection do
-      get 'new/:box_id', to: 'product_boxes#new', as: 'new'
-      post 'add_product/:id', to: 'product_boxes#add_product', as: 'add_product'
-      delete 'remove_product/:id', to: 'cart#remove_product', as: 'remove_product'
+      get 'new/:box_id', to: 'user_boxes#new', as: 'new'
     end
   end
 

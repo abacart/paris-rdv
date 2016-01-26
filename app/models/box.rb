@@ -7,5 +7,4 @@ class Box < ActiveRecord::Base
   has_many :users, through: :user_items, as: :buyable
   has_many :user_items, as: :buyable, dependent: :destroy
 
-
 end
