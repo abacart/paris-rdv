@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124234330) do
+ActiveRecord::Schema.define(version: 20160126040956) do
 
   create_table "boxes", force: :cascade do |t|
     t.integer  "category_id"
@@ -46,28 +46,40 @@ ActiveRecord::Schema.define(version: 20160124234330) do
     t.text     "description"
     t.float    "price"
     t.integer  "category_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  create_table "user_box_products", force: :cascade do |t|
+    t.integer  "user_box_id"
+    t.integer  "product_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "user_items", force: :cascade do |t|
+  add_index "user_box_products", ["product_id"], name: "index_user_box_products_on_product_id"
+  add_index "user_box_products", ["user_box_id"], name: "index_user_box_products_on_user_box_id"
+
+  create_table "user_boxes", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "buyable_id"
-    t.string   "buyable_type"
-    t.integer  "quantity",     default: 0
+    t.integer  "box_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "user_items", ["buyable_id"], name: "index_user_items_on_buyable_id"
-  add_index "user_items", ["user_id"], name: "index_user_items_on_user_id"
+  add_index "user_boxes", ["box_id"], name: "index_user_boxes_on_box_id"
+  add_index "user_boxes", ["user_id"], name: "index_user_boxes_on_user_id"
 
   create_table "user_products", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "user_id"
-    t.integer  "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "quantity",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "user_products", ["product_id"], name: "index_user_products_on_product_id"

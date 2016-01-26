@@ -2,6 +2,7 @@
 <table class="table">
   <% @products.each do |product| %>
     <tr>
+      <td><%= image_tag product.picture(:thumb)%></td>
       <td><%= link_to product.name, product %></td>
       <td><%= product.price %></td>
     </tr>

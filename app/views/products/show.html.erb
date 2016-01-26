@@ -1,5 +1,6 @@
 <h1><%= @product.name %></h1>
 <p><%= @product.description %></p>
+<p><%= image_tag @product.picture(:thumb) %></p>
 <strong><%= @product.price %></strong>
 <%= link_to 'Add to cart', add_product_cart_index_path(@product), method: :post %>
 

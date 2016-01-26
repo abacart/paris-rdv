@@ -1,11 +1,13 @@
 <table class="table">
 <caption>Products</caption>
     <tr>
+      <th></th>
       <th>Products</th>
       <th>Prices</th>
     </tr>
   <% @products.unboxable.each do |product| %>
     <tr>
+      <td><%= image_tag product.picture(:thumb)%></td>
       <td><%= link_to product.name, product %></td>
       <td><%= product.price %></td>
     </tr>

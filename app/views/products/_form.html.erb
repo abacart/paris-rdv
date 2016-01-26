@@ -11,9 +11,10 @@
     </div>
   <% end %>
 
-  <p><%= f.collection_select(:category_id, Category.all, :id, :name ) %></p>
-  <p><%= f.text_field :name %></p>
-  <p><%= f.text_area :description %></p>
-  <p><%= f.number_field :price, :class => 'cost', :step => '0.01' %></p>
+  <%= f.collection_select(:category_id, Category.all, :id, :name ) %>
+  <%= f.file_field :picture %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description %>
+  <%= f.number_field :price, :class => 'cost', :step => '0.01' %>
   <%= f.submit %>
 <% end %>
