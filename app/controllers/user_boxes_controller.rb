@@ -1,4 +1,6 @@
 class UserBoxesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @box = Box.find params[:box_id]
     @products = @box.category.products
@@ -8,9 +10,7 @@ class UserBoxesController < ApplicationController
   def add_product
     @user_box = UserBox.find params[:user_box_id]
     @product = Product.find params[:product_id]
-    unless @user_box.full?
-      UserBoxProduct.create(user_box: @user_box, product: @product)
-    end
+    UserBoxProduct.create(user_box: @user_box, product: @product)
   end
 
   def remove_product
