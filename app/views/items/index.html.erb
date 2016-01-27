@@ -1,34 +1,29 @@
 <div class="row buffer-top">
+
   <div class="col-md-6">
-    <table class="table">
-      <caption>Products</caption>
-        <tr>
-          <th></th>
-          <th>Products</th>
-          <th>Prices</th>
-        </tr>
+
       <% @products.unboxable.each do |product| %>
-        <tr>
-          <td><%= image_tag product.picture(:thumb)%></td>
-          <td><%= link_to product.name, product %></td>
-          <td><%= product.price %></td>
-        </tr>
+        <div class="col-xs-6 col-md-3">
+          <%= link_to product, class: "thumbnail item-preview" do %>
+            <%= image_tag product.picture %>
+            <%= product.name %>
+          <% end %>
+        </div>
       <% end %>
-    </table>
   </div>
   <div class="col-md-6">
     <table class="table">
-      <caption>Boxes</caption>
-        <tr>
-          <th>Boxes</th>
-          <th>Prices</th>
-        </tr>
-      <% @boxes.each do |box| %>
-        <tr>
-          <td><%= link_to box.name, box %></td>
-          <td><%= box.price %></td>
-        </tr>
-      <% end %>
+       <caption>Boxes</caption>
+         <tr>
+           <th>Boxes</th>
+           <th>Prices</th>
+         </tr>
+       <% @boxes.each do |box| %>
+         <tr>
+           <td><%= link_to box.name, box %></td>
+           <td><%= box.price %></td>
+         </tr>
+       <% end %>
     </table>
   </div>
 </div>

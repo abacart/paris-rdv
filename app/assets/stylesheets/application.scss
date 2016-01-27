@@ -3,5 +3,13 @@ $brand-primary: #D2527F;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "rails_bootstrap_forms";
+
+// Base styles
 @import "base";
-@import "modules/boxes";
+
+// Layout styles
+@import "layout";
+
+// Modules
+@import "modules/box";
+@import "modules/product_preview";
