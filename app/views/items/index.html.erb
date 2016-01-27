@@ -1,29 +1,34 @@
-<table class="table">
-<caption>Products</caption>
-    <tr>
-      <th></th>
-      <th>Products</th>
-      <th>Prices</th>
-    </tr>
-  <% @products.unboxable.each do |product| %>
-    <tr>
-      <td><%= image_tag product.picture(:thumb)%></td>
-      <td><%= link_to product.name, product %></td>
-      <td><%= product.price %></td>
-    </tr>
-  <% end %>
-</table>
-
-<table class="table">
-<caption>Create your box</caption>
-    <tr>
-      <th>Boxes</th>
-      <th>Prices</th>
-    </tr>
-  <% @boxes.each do |box| %>
-    <tr>
-      <td><%= link_to box.name, box %></td>
-      <td><%= box.price %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row buffer-top">
+  <div class="col-md-6">
+    <table class="table">
+      <caption>Products</caption>
+        <tr>
+          <th></th>
+          <th>Products</th>
+          <th>Prices</th>
+        </tr>
+      <% @products.unboxable.each do |product| %>
+        <tr>
+          <td><%= image_tag product.picture(:thumb)%></td>
+          <td><%= link_to product.name, product %></td>
+          <td><%= product.price %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <table class="table">
+      <caption>Boxes</caption>
+        <tr>
+          <th>Boxes</th>
+          <th>Prices</th>
+        </tr>
+      <% @boxes.each do |box| %>
+        <tr>
+          <td><%= link_to box.name, box %></td>
+          <td><%= box.price %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
