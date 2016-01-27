@@ -1,34 +1,40 @@
-<table>
-<tr>
-<td><%= link_to "Create product", new_product_path, class: btn(:primary) %></td>
-<td><%= link_to "Create Box", new_box_path, class: btn(:primary) %></td>
-</tr>
-</table>
-<table class="table">
-<caption>Items for sale list</caption>
-    <tr>
-      <th>Products</th>
-      <th></th>
-      <th></th>
-    </tr>
-  <% @products.each do |product| %>
-    <tr>
-      <td><%= link_to product.name, edit_product_path(product) %></td>
-      <td><%= product.price %></td>
-      <td><%= link_to 'Delete', product, method: :delete %></td>
-    </tr>
-  <% end %>
+<%= link_to "Create product", new_product_path, class: btn(:primary) %>
+<%= link_to "Create Box", new_box_path, class: btn(:primary) %>
 
-    <tr>
-      <th>Boxes</th>
-      <th>Prices</th>
-      <th></th>
-    </tr>
-  <% @boxes.each do |box| %>
-    <tr>
-      <td><%= link_to box.name, edit_box_path(box) %></td>
-      <td><%= box.price %></td>
-      <td><%= link_to 'Delete', box, method: :delete %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row buffer-top">
+  <div class="col-md-6">
+
+    <table class="table">
+      <caption>Product list</caption>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, edit_product_path(product) %></td>
+        <td><%= number_to_currency product.price %></td>
+        <td><%= link_to 'Delete', product, method: :delete, class: "text-danger" %></td>
+      </tr>
+      <% end %>
+    </table>
+
+    <table class="table">
+      <caption>Box list</caption>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      <% @boxes.each do |box| %>
+      <tr>
+        <td><%= link_to box.name, edit_box_path(box) %></td>
+        <td><%= number_to_currency box.price %></td>
+        <td><%= link_to 'Delete', box, method: :delete, class: "text-danger" %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+</div>
