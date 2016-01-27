@@ -7,5 +7,5 @@
 </ul>
 
 <% if @user_box.full? %>
-  <p class='text-danger'>The box is full.</p>
+  <p><%= link_to 'Add to cart',add_box_cart_index_path(@user_box), method: :post, class: "text-success" %></p>
 <% end %>

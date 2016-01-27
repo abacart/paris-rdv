@@ -13,13 +13,14 @@ Rails.application.routes.draw do
   resources :products
   resources :boxes
   resources :admin, only: [:index]
-  resources :items, only: [:index]
+  resources :shop, only: [:index]
 
   resources :cart, only: [:index] do
     collection do
       post 'add_box/:id', to: 'cart#add_box', as: 'add_box'
       post 'add_product/:id', to: 'cart#add_product', as: 'add_product'
-      delete 'remove_item/:id', to: 'cart#remove_item', as: 'remove'
+      delete 'remove_box/:id', to: 'cart#remove_box', as: 'remove_box'
+      delete 'remove_product/:id', to: 'cart#remove_product', as: 'remove_product'
     end
   end
 
