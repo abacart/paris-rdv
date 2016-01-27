@@ -10,12 +10,11 @@ class User < ActiveRecord::Base
 
 
   def total_cart
-    self.user_items.collect(&:price).sum
+    t_products = self.user_products.collect(&:price).sum
+    t_boxes = self.user_boxes.collect(&:price).sum
+    t_products+t_boxes
   end
 
-  def add_to_cart(buyable)
-    self.user_items.find_or_create_by(buyable: buyable).increment!(:quantity)
-  end
 end
 
 

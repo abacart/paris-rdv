@@ -1,5 +1,5 @@
 <h1>Cart</h1>
-<% if @user_items.size > 0 %>
+<% if @user_box.size > 0 %>
 <table class="table">
     <tr>
       <th></th>
@@ -7,14 +7,24 @@
       <th>Name</th>
       <th>Price</th>
     </tr>
-  <% @user_items.each do |ui| %>
+  <% @user_product.each do |up| %>
     <tr>
-      <td><%= link_to 'X', remove_cart_index_path(ui.id), method: :delete %></td>
-      <td><%= ui.quantity %></td>
-      <td><%= link_to ui.name, ui.buyable %></td>
-      <td><%= number_to_currency ui.price %></td>
+      <td><%= link_to 'X', remove_product_cart_index_path(up.id), method: :delete %></td>
+      <td><%= up.quantity %></td>
+      <td><%= link_to up.product.name, up.product %></td>
+      <td><%= number_to_currency up.price %></td>
     </tr>
   <% end %>
+
+  <% @user_box.each do |ub| %>
+    <tr>
+      <td><%= link_to 'X', remove_box_cart_index_path(ub.id), method: :delete %></td>
+      <td><%= ub.quantity %></td>
+      <td><%= ub.box.name %></td>
+      <td><%= number_to_currency ub.price %></td>
+    </tr>
+  <% end %>
+
     <tr>
       <td></td>
       <td></td>

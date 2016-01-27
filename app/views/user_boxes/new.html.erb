@@ -7,7 +7,7 @@
         <tr>
           <td><%= image_tag product.picture(:thumb)%></td>
           <td><%= link_to product.name, product %></td>
-          <td><%= link_to "Add to box", user_box_add_product_path(@user_box, product), remote: true, method: :post %></td>
+          <td><%= link_to "+", user_box_add_product_path(@user_box, product), remote: true, method: :post %></td>
         </tr>
       <% end %>
     </table>
