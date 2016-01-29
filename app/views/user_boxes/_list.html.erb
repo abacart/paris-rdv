@@ -1,10 +1,18 @@
 <ul>
-  <% @user_box.products.each do |p| %>
+  <% @user_box.content.each do |product, count| %>
     <li>
-    <%= p.name %>
+      <%= product.name %>
+      x<%= count %>
     </li>
   <% end %>
 </ul>
+
+<% @user_box.products.each do |ub| %>
+  <i class="glyphicon glyphicon-record text-primary"></i>
+<% end %>
+<% (1..(@user_box.box.size - @user_box.products.size)).each do %>
+  <i class="glyphicon glyphicon-record text-muted"></i>
+<% end %>
 
 <% if @user_box.full? %>
   <p><%= link_to 'Add to cart',add_box_cart_index_path(@user_box), method: :post, class: "text-success" %></p>

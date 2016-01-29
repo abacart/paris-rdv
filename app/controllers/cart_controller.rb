@@ -1,5 +1,7 @@
 class CartController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_product, only: [:remove_product]
+  before_action :set_box, only: [:remove_box]
 
   def add_product
     @product = Product.find(params[:id])
@@ -14,17 +16,29 @@ class CartController < ApplicationController
   end
 
   def remove_product
-    @user_item = UserItem.find params[:id]
-    @item_name = @user_item.buyable.name
-    current_user.user_items.delete(@user_item)
-    redirect_to cart_index_path, notice: "#{@item_name} removed from the cart"
+    destroy_item
   end
 
   def remove_box
+    destroy_item
   end
 
   def index
-    @user_product = current_user.user_products
-    @user_box = current_user.user_boxes
+    @user_products = current_user.user_products
+    @user_boxes = current_user.user_boxes
   end
+
+  private
+    def destroy_item
+      @item.destroy
+      redirect_to cart_index_path, notice: "Item removed from the cart"
+    end
+
+    def set_product
+      @item = UserProduct.find params[:id]
+    end
+
+    def set_box
+      @item = UserBox.find params[:id]
+    end
 end

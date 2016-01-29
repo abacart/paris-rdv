@@ -11,9 +11,16 @@ class UserBoxesController < ApplicationController
     @user_box = UserBox.find params[:user_box_id]
     @product = Product.find params[:product_id]
     UserBoxProduct.create(user_box: @user_box, product: @product)
+    render :refresh_user_box_list
   end
 
   def remove_product
+    @user_box = UserBox.find params[:user_box_id]
+    @product = Product.find params[:product_id]
+    if ubp = UserBoxProduct.find_by(user_box: @user_box, product: @product)
+      ubp.destroy
+    end
+    render :refresh_user_box_list
   end
 
   def destroy
