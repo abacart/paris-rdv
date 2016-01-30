@@ -21,8 +21,14 @@ Rails.application.routes.draw do
       post 'add_product/:id', to: 'cart#add_product', as: 'add_product'
       delete 'remove_box/:id', to: 'cart#remove_box', as: 'remove_box'
       delete 'remove_product/:id', to: 'cart#remove_product', as: 'remove_product'
+      patch 'update_box/:id', to: 'cart#update_box', as: 'update_box'
+      patch 'increase_box_quantity/:id', to: 'cart#increase_box_quantity', as: 'increase_box_quantity'
+      patch 'decrease_box_quantity/:id', to: 'cart#decrease_box_quantity', as: 'decrease_box_quantity'
+      patch 'increase_product_quantity/:id', to: 'cart#increase_product_quantity', as: 'increase_product_quantity'
+      patch 'decrease_product_quantity/:id', to: 'cart#decrease_product_quantity', as: 'decrease_product_quantity'
+
     end
   end
 
-  root to: 'products#index'
+  root to: 'shop#index'
 end

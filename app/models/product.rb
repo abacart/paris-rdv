@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   validates :name, :price, uniqueness: true
   validates :picture, attachment_presence: true
 
-  has_many :users, through: :user_items, as: :buyable
+  has_many :users, through: :user_products
 
   belongs_to :category
 

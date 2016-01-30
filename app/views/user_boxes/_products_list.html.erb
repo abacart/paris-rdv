@@ -1,0 +1,25 @@
+<h1>Choose your <%= @products.first.category.name %></h1>
+
+<div class="row">
+  <div class="col-xs-8">
+    <table class="table">
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= image_tag product.picture(:thumb)%></td>
+          <td><%= link_to product.name, product %></td>
+          <td><%= link_to "+", user_box_add_product_path(@user_box, product), remote: true, method: :post %></td>
+          <td><%= link_to "-", user_box_remove_product_path(@user_box, product), remote: true, method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-xs-4">
+    <h2><%= @box.name %></h2>
+    <p><%= number_to_currency @box.price %></p>
+    <div id="product-list">
+        <%= render 'user_boxes/list' %>
+    </div>
+  </div>
+
+</div>

@@ -1,4 +1,6 @@
 <h1>Cart</h1>
+
+<% #@invoice %>
 <% if @user_products.empty? && @user_boxes.empty? %>
   <p class="text-info">Your cart is empty.</p>
 <% else %>
@@ -12,7 +14,11 @@
     <% @user_products.each do |up| %>
       <tr>
         <td><%= link_to 'X', remove_product_cart_index_path(up.id), method: :delete %></td>
-        <td><%= up.quantity %></td>
+        <td>
+            <%= link_to '-', decrease_product_quantity_cart_index_path(up), method: :patch %>
+            <%= up.quantity %>
+            <%= link_to '+', increase_product_quantity_cart_index_path(up), method: :patch %>
+        </td>
         <td><%= link_to up.product.name, up.product %></td>
         <td><%= number_to_currency up.price %></td>
       </tr>
@@ -21,8 +27,17 @@
     <% @user_boxes.each do |ub| %>
       <tr>
         <td><%= link_to 'X', remove_box_cart_index_path(ub.id), method: :delete %></td>
-        <td><%= ub.quantity %></td>
-        <td><%= ub.box.name %></td>
+        <td>
+            <%= link_to '-', decrease_box_quantity_cart_index_path(ub), method: :patch %>
+            <%= ub.quantity %>
+            <%= link_to '+', increase_box_quantity_cart_index_path(ub), method: :patch %>
+        </td>
+        <td><%= link_to ub.box.name, edit_user_box_path(ub) %>
+           <% if !ub.full? %>
+              <i class="glyphicon glyphicon-warning-sign"></i>
+              <%= link_to 'This box is not full', edit_user_box_path(ub) %>
+          <% end %>
+        </td>
         <td><%= number_to_currency ub.price %></td>
       </tr>
     <% end %>

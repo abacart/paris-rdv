@@ -7,6 +7,13 @@ class UserBoxesController < ApplicationController
     @user_box = current_user.user_boxes.find_or_create_by(box: @box, quantity: 0)
   end
 
+  def edit
+    @user_box = current_user.user_boxes.find(params[:id])
+    @box = @user_box.box
+    @products = @box.category.products
+   # @user_box.decrement!(:quantity)
+  end
+
   def add_product
     @user_box = UserBox.find params[:user_box_id]
     @product = Product.find params[:product_id]
@@ -23,6 +30,6 @@ class UserBoxesController < ApplicationController
     render :refresh_user_box_list
   end
 
-  def destroy
+  def destroy #remove_box on cart_controller
   end
 end
