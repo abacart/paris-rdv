@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
 
   validates :name, presence: true
-  validates :name, :price, uniqueness: true
+  validates :name, uniqueness: true
   validates :picture, attachment_presence: true
 
   has_many :users, through: :user_products

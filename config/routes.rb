@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :boxes
   resources :admin, only: [:index]
   resources :shop, only: [:index]
+  resources :home, only: [:index]
 
   resources :cart, only: [:index] do
     collection do
@@ -30,5 +31,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'shop#index'
+  root to: 'home#index'
 end

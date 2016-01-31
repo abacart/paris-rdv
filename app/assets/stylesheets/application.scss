@@ -10,6 +10,10 @@ $brand-primary: #D2527F;
 // Layout styles
 @import "layout";
 
+@import "footer";
+
+
 // Modules
 @import "modules/box";
+@import "modules/home";
 @import "modules/product_preview";
