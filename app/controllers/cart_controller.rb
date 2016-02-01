@@ -49,7 +49,7 @@ class CartController < ApplicationController
   def index
     @user_products = current_user.user_products
     @user_boxes = current_user.user_boxes.where.not(quantity: 0)
-    @invoice = (@user_boxes + @user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
+    #@invoice = (@user_boxes + @user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
   end
 
 

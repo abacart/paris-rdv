@@ -12,7 +12,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap_form'
 gem "paperclip", "~> 4.3"
 gem 'statyx_helpers', '1.7', git: 'https://github.com/statyx/statyx-helpers.git'
-
+gem 'activemerchant'
 
 group :development, :test do
   gem 'byebug'

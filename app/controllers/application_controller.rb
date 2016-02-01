@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
 
+
   def authenticate_admin!
     authenticate_or_request_with_http_basic do |username, password|
       username == Rails.application.secrets.login && password == Rails.application.secrets.password

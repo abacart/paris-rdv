@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   resources :shop, only: [:index]
   resources :home, only: [:index]
 
+  resources :orders
+  post "/orders/:id" => "orders#show"
+  post "/hook" => "orders#hook"
+
+
   resources :cart, only: [:index] do
     collection do
       post 'add_box/:id', to: 'cart#add_box', as: 'add_box'
@@ -27,7 +32,6 @@ Rails.application.routes.draw do
       patch 'decrease_box_quantity/:id', to: 'cart#decrease_box_quantity', as: 'decrease_box_quantity'
       patch 'increase_product_quantity/:id', to: 'cart#increase_product_quantity', as: 'increase_product_quantity'
       patch 'decrease_product_quantity/:id', to: 'cart#decrease_product_quantity', as: 'decrease_product_quantity'
-
     end
   end
 

@@ -40,4 +40,18 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+        ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+            login: "prdv-facilitator_api1.gmail.com",
+            password: "LCYZHNGDPFEPTKZQ",
+            signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31AeWsHOdoS8nDH6UFRQfxjbEpO838"
+        )
+  end
+
+  config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.1"
+
 end
+
+
+
