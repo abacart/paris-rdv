@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_admin!, only: [:index]
+
 
   def index
     @orders = Order.all

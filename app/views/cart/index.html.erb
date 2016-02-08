@@ -1,4 +1,4 @@
-<h1>Cart</h1>
+<h3>Cart</h3>
 
 <% #@invoice %>
 <% if @user_products.empty? && @user_boxes.empty? %>
@@ -51,4 +51,4 @@
   </table>
 <% end %>
 
-<%= link_to 'Go to checkout', orders_path, method: :post %>
+<%= link_to 'Go to checkout', orders_path, method: :post , class: btn(:primary) %>

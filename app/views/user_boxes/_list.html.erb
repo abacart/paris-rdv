@@ -6,20 +6,19 @@
 <% (1..(@user_box.box.size - @user_box.products.size)).each do %>
   <i class="glyphicon glyphicon-record text-muted"></i>
 <% end %>
-
-<ul>
+<div>
   <% @user_box.content.each do |product, count| %>
-    <li>
       <%= product.name %>
       x<%= count %>
-    </li>
   <% end %>
-</ul>
+  <br/><br/>
+
+</div>
 
 <% if @user_box.full? %>
   <% if @user_box.quantity == 0 %>
-    <p><%= link_to 'Add to cart',add_box_cart_index_path(@user_box), method: :post, class: "text-success" %></p>
+    <p><%= link_to "Add to cart <i class='glyphicon glyphicon-ok'></i>".html_safe, add_box_cart_index_path(@user_box), method: :post, class: btn(:primary) %></p>
   <% else %>
-    <p><%= link_to 'Go to cart',update_box_cart_index_path(@user_box), method: :patch, class: "text-success"  %></p>
+    <p><%= link_to 'Go to cart',update_box_cart_index_path(@user_box), method: :patch, class: btn(:primary)  %></p>
     <% end %>
 <% end %>

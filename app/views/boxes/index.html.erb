@@ -1,8 +1,9 @@
-<h1>Packages</h1>
+<h3>Build your own box</h3>
 <table class="table">
   <% @boxes.each do |box| %>
     <tr>
-      <td><%= link_to box.name, box %></td>
-      <td><%= box.price %></td>
+      <td><%= link_to image_tag(box.picture(:thumb)), new_user_boxes_path(box)  %></td>
+      <td><%= link_to box.name, new_user_boxes_path(box) %></td>
+      <td><%= number_to_currency box.price %></td>
     </tr>
   <% end %>

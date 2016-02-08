@@ -3,7 +3,7 @@ class UserBoxesController < ApplicationController
 
   def new
     @box = Box.find params[:box_id]
-    @products = @box.category.products
+    @products = @box.category.products.boxable
     @user_box = current_user.user_boxes.find_or_create_by(box: @box, quantity: 0)
   end
 

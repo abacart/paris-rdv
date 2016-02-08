@@ -1,7 +1,13 @@
-<h1><%= @product.name %></h1>
-<p><%= @product.description %></p>
-<p><%= image_tag @product.picture(:thumb) %></p>
-<strong><%= number_to_currency @product.price %></strong>
+<div class="show_product">
+<h3><%= @product.name %></h3>
+<h4><%= @product.description %></h4>
+<p><%= number_to_currency @product.price %></p>
+<p><%= image_tag @product.picture(:medium) %></p>
+
+
+<%= link_to "Back".html_safe, :back , class: btn(:default)%>
 <% if @product.price? %>
-  <%= link_to 'Add to cart', add_product_cart_index_path(@product), method: :post %>
+  <%= link_to 'Add to cart', add_product_cart_index_path(@product), method: :post, class: btn(:primary) %>
 <% end %>
+
+</div>

@@ -1,7 +1,8 @@
 
-<p><%= @order.status %></p>
-<p><%= @order.invoice %></p>
-<p><%= @order.amount %></p>
-<p><%= @order.transaction_id %></p>
-<p><%= @order.purchased_at %></p>
-<p><%= @order.invoice %></p>
+<table>
+  <tr><td><strong>Order status</strong> </td><td> <%= @order.status %></td></tr>
+  <tr><td><strong>Total amount</strong> </td><td> <%= number_to_currency @order.amount %></td></tr>
+  <tr><td><strong>Transaction ID</strong> </td><td> <%= @order.transaction_id %></td></tr>
+  <tr><td><strong>purchased at</strong> </td><td> <%= @order.purchased_at %></td></tr>
+</table>
+<%= @order.invoice %>

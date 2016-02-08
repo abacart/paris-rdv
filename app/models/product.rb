@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   belongs_to :category
 
   scope :unboxable, -> {where.not(:price => nil)}
+  scope :boxable, -> {where(:price => nil)}
 
 
   has_attached_file :picture, styles: { medium: "300x300>" , thumb: "100x100>"}, default_url: "/images/:style/missing.png"

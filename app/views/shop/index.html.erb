@@ -1,4 +1,4 @@
-<h3>Our Products</h3>
+<h3>French Pastries</h3>
 <div class="row">
   <% @products.unboxable.each do |product| %>
       <div class="col-xs-6 col-md-3">
@@ -10,13 +10,3 @@
   <% end %>
 </div>
 
-<h3>Our Boxes</h3>
-<div class="row">
-  <% @boxes.each do |box| %>
-      <div class="col-xs-6 col-md-3">
-        <%= link_to box, class: "thumbnail item-preview" do %>
-          <%= box.name %>
-        <% end %>
-      </div>
-  <% end %>
-</div>
