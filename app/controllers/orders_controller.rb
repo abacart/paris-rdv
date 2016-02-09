@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_user!, except: [:hook]
+  before_action :authenticate_admin!, only: [:all_index]
 
 
   def index
+    @orders = current_user.orders.all
+  end
+
+  def all_index
     @orders = Order.all
+    render :index
   end
 
 
@@ -16,6 +21,9 @@ class OrdersController < ApplicationController
 
   def show
     @order=Order.find(params[:id])
+    if @order.user != current_user
+      redirect_to home_index_path, alert: "You are not allowed to go see this order"
+    end
   end
 
   # POST /order
@@ -23,13 +31,25 @@ class OrdersController < ApplicationController
     @order = Order.new #@order = Order.new(order_params)
     @order.user = current_user
     @order.amount = current_user.total_cart
-    @order.invoice = (current_user.user_boxes.where.not(quantity: 0) + current_user.user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
+    #@order.invoice = (current_user.user_boxes.where.not(quantity: 0) + current_user.user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
+    @invoice = "<strong>To take away</strong><br/>"
+    current_user.user_products.each do |up|
+      @invoice += "#{up.quantity} - #{up.name}<br/>"
+    end
+    current_user.user_boxes.where.not(quantity: 0).each do |ub|
+      @invoice += "#{ub.quantity} - #{ub.name}<br/>"
+      ub.content.each do |product, count|
+        @invoice += "__ #{count} - #{product.name}</br>"
+      end
+    end
+    @order.invoice=@invoice
+
     #@order.card.ip_address = request.remote_ip
 
     if @order.save
       #case params['payment_method']
       #  when "paypal"
-          redirect_to @order.paypal_url(order_path @order) # The arg is the order#show
+          redirect_to @order.paypal_url(home_index_path) # The arg is the order#show order_path @order
       #  when "card"
       #    if @order.card.purchase
       #      redirect_to order_path(@order), notice: @order.card.card_transaction.message

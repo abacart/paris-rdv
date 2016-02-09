@@ -6,7 +6,7 @@ class CartController < ApplicationController
   def add_product
     @product = Product.find(params[:id])
     UserProduct.find_or_create_by(product_id: @product.id, user_id: current_user.id).increment!(:quantity)
-    redirect_to @product, notice: "#{@product.name} added to the cart"
+    redirect_to shop_index_path, notice: "#{@product.name} added to the cart"
   end
 
   def add_box
@@ -49,15 +49,15 @@ class CartController < ApplicationController
   def index
     @user_products = current_user.user_products
     @user_boxes = current_user.user_boxes.where.not(quantity: 0)
-    #@invoice = (@user_boxes + @user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
   end
 
 
 
   private
     def destroy_item
+      @tmp=@item
       @item.destroy
-      redirect_to cart_index_path, notice: "Item removed from the cart"
+      redirect_to cart_index_path, notice: "#{@tmp.name} removed from the cart"
     end
 
     def increase_item_quantity

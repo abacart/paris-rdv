@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :user_boxes, dependent: :destroy
   has_many :user_products, dependent: :destroy
+  has_many :orders
 
 
 

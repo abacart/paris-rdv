@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :orders
   post "/orders/:id" => "orders#show"
   post "/hook" => "orders#hook"
+  get "/all_orders" => "orders#all_index"
 
+  post "/home" => "home#index"
 
   resources :cart, only: [:index] do
     collection do

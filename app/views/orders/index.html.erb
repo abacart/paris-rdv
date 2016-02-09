@@ -1,18 +1,19 @@
 <h3>Orders</h3>
+<p><%= link_to "Back to cart".html_safe, cart_index_path , class: btn(:primary)%>
+</p>
 <table class="table">
     <tr>
       <th>Status</th>
       <th>Purchased at</th>
-      <th>Amout</th>
+      <th>Amount</th>
       <th>Transaction ID</th>
     </tr>
   <% @orders.each do |order| %>
     <tr>
-      <td><%= order.status %></td>
+      <td><%= link_to order.status, order %></td>
       <td><%= order.purchased_at %></td>
       <td><%= number_to_currency order.amount %></td>
       <td><%= order.transaction_id %></td>
-
     </tr>
   <% end %>
 </table>

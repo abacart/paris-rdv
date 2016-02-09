@@ -1,6 +1,7 @@
 <h3>Cart</h3>
 
-<% #@invoice %>
+<p><%= link_to "All orders", orders_path, class: btn(:primary) %>
+</p>
 <% if @user_products.empty? && @user_boxes.empty? %>
   <p class="text-info">Your cart is empty.</p>
 <% else %>

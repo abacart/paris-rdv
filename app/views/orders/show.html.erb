@@ -1,8 +1,21 @@
+<h3>Order details</h3>
+<p><%= link_to "Back to orders list".html_safe, orders_path , class: btn(:primary)%>
+</p>
+<table class="table">
+    <tr>
+      <th>Status</th>
+      <th>Purchased at</th>
+      <th>Amount</th>
+      <th>Transaction ID</th>
+    </tr>
 
-<table>
-  <tr><td><strong>Order status</strong> </td><td> <%= @order.status %></td></tr>
-  <tr><td><strong>Total amount</strong> </td><td> <%= number_to_currency @order.amount %></td></tr>
-  <tr><td><strong>Transaction ID</strong> </td><td> <%= @order.transaction_id %></td></tr>
-  <tr><td><strong>purchased at</strong> </td><td> <%= @order.purchased_at %></td></tr>
+    <tr>
+      <td><%= @order.status %></td>
+      <td><%= @order.purchased_at %></td>
+      <td><%= number_to_currency @order.amount %></td>
+      <td><%= @order.transaction_id %></td>
+    </tr>
 </table>
-<%= @order.invoice %>
+<div>
+<%= @order.invoice.html_safe %>
+</p>
