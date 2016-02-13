@@ -13,6 +13,9 @@ gem 'bootstrap_form'
 gem "paperclip", "~> 4.3"
 gem 'statyx_helpers', '1.7', git: 'https://github.com/statyx/statyx-helpers.git'
 gem 'activemerchant'
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
+
 
 group :development, :test do
   gem 'byebug'
@@ -20,6 +23,6 @@ end
 
 group :production do
   gem 'capistrano-rails'
-  gem 'spring'
+  gem 'pg'
 end
 

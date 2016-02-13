@@ -50,6 +50,60 @@
       <td><%= number_to_currency current_user.total_cart %></td>
     </tr>
   </table>
+
+
+  <%= bootstrap_form_tag url: orders_path, :method=>'post' do |f| %>
+    <table class = "table">
+      <caption>
+        Choose when do you want to pick up your order before checkout.
+      </caption>
+      <tr>
+        <td>
+          <div class="input-group date">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            <%= f.text_field :date, class: 'form-control', hide_label: true, required: true %>
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+            <%= f.select(:hour, options_for_select([
+              ['10:00 AM', '10:00 AM'],
+              ['11:00 AM', '11:00 AM'],
+              ['2:00 PM', '2:00 PM'],
+              ['3:00 PM', '3:00 PM'],
+              ['4:00 PM', '4:00 PM'],
+              ['5:00 PM', '5:00 PM']
+              ]), class: 'form-control', hide_label: true ) %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><%= submit_tag "Go to checkout", class: btn(:primary)  %></td>
+      </tr>
+    </table>
+  <% end %>
 <% end %>
 
-<%= link_to 'Go to checkout', orders_path, method: :post , class: btn(:primary) %>
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.input-group.date').datepicker({
+        startDate: "tomorrow",
+        orientation: "bottom left",
+        todayHighlight: true,
+        datesDisabled: ['12/25/2016']
+      });
+  });
+</script>
+
+
+
+
+
+
+

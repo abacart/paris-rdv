@@ -3,17 +3,19 @@
 </p>
 <table class="table">
     <tr>
-      <th>Status</th>
-      <th>Purchased at</th>
+      <th>Payment status</th>
+      <th>Pick up time</th>
       <th>Amount</th>
       <th>Transaction ID</th>
+      <th>Purchased at</th>
     </tr>
   <% @orders.each do |order| %>
     <tr>
       <td><%= link_to order.status, order %></td>
-      <td><%= order.purchased_at %></td>
+      <td><%= order.time_delivery %></td>
       <td><%= number_to_currency order.amount %></td>
       <td><%= order.transaction_id %></td>
+      <td><%= order.purchased_at %></td>
     </tr>
   <% end %>
 </table>

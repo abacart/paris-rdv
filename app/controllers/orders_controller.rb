@@ -31,8 +31,9 @@ class OrdersController < ApplicationController
     @order = Order.new #@order = Order.new(order_params)
     @order.user = current_user
     @order.amount = current_user.total_cart
+    @order.time_delivery = params[:date]+" at "+params[:hour]
     #@order.invoice = (current_user.user_boxes.where.not(quantity: 0) + current_user.user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
-    @invoice = "<strong>To take away</strong><br/>"
+    @invoice = "<strong>Order</strong><br/>"
     current_user.user_products.each do |up|
       @invoice += "#{up.quantity} - #{up.name}<br/>"
     end
@@ -43,7 +44,6 @@ class OrdersController < ApplicationController
       end
     end
     @order.invoice=@invoice
-
     #@order.card.ip_address = request.remote_ip
 
     if @order.save
