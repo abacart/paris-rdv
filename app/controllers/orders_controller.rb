@@ -33,18 +33,20 @@ class OrdersController < ApplicationController
     @order.amount = current_user.total_cart
     @order.time_delivery = params[:date]+" at "+params[:hour]
     #@order.invoice = (current_user.user_boxes.where.not(quantity: 0) + current_user.user_products).map{|item| "#{item.name} x #{item.quantity} #{item.price}" }
-    @invoice = "<strong>Order</strong><br/>"
+    @invoice=[]
     current_user.user_products.each do |up|
-      @invoice += "#{up.quantity} - #{up.name}<br/>"
+      @invoice.push(["Product", up.quantity, up.name])
     end
     current_user.user_boxes.where.not(quantity: 0).each do |ub|
-      @invoice += "#{ub.quantity} - #{ub.name}<br/>"
+      box_content=[]
       ub.content.each do |product, count|
-        @invoice += "__ #{count} - #{product.name}</br>"
+        box_content.push([count, product.name])
       end
+      @invoice.push(["Box", ub.quantity, ub.name, box_content])
     end
     @order.invoice=@invoice
     #@order.card.ip_address = request.remote_ip
+
 
     if @order.save
       #case params['payment_method']
@@ -71,6 +73,9 @@ class OrdersController < ApplicationController
     if status == "Completed"
       @order = Order.find params[:invoice]
       @order.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+
+      @order.user.user_boxes.destroy_all
+      @order.user.user_products.destroy_all
     end
     render nothing: true
   end

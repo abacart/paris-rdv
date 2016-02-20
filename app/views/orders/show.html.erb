@@ -19,5 +19,24 @@
     </tr>
 </table>
 <div>
-<%= @order.invoice.html_safe %>
-</p>
+
+<ul>
+<% eval(@order.invoice).each do |element| %>
+  <% if element[0]=="Product" %>
+    <li><%= "#{element[1]}x  #{element[2]}"%></li>
+  <% end %>
+<% end %>
+</ul>
+
+<ul>
+<% eval(@order.invoice).each do |element| %>
+  <% if element[0]=="Box" %>
+    <li><%= "#{element[1]}x  #{element[2]}" %></li>
+    <ul>
+      <% element[3].each do |product_content| %>
+        <li><%= "#{product_content[0]}x  #{product_content[1]}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+</ul>

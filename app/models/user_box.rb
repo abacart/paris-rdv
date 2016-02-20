@@ -2,7 +2,7 @@ class UserBox < ActiveRecord::Base
   belongs_to :user
   belongs_to :box
 
-  has_many :user_box_products
+  has_many :user_box_products, dependent: :destroy
   has_many :products, through: :user_box_products
   has_many :boxes
 
