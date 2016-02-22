@@ -4,11 +4,11 @@ class OrdersController < ApplicationController
 
 
   def index
-    @orders = current_user.orders.all
+    @orders = current_user.orders.all.sort.reverse
   end
 
   def all_index
-    @orders = Order.all
+    @orders = Order.all.sort.reverse
     render :index
   end
 
